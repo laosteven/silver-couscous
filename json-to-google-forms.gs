@@ -1,27 +1,26 @@
 /**
-json-to-google-forms.gs
-
-Purpose:
-- Generates a Google Form quiz from a JSON object.
-
-Input JSON format:
-[
-  {
-    "question": "Long Facebook message",
-    "options": ["Friend_A", "Friend_B", "Friend_C", "Friend_D"],
-    "correct": "Friend_A"
-  }
-]
-
-Usage:
-1. Paste your JSON content in the `data` variable.
-3. Run createQuizForm() in Google Apps Script.
-
-Notes:
-- Creates a multiple-choice quiz.
-- Marks the correct answer automatically.
-- Adds correct-answer feedback.
-*/
+ * Chaotic Group Chat Quiz Generator
+ * ---------------------------------
+ * This Google Apps Script builds a full Google Form quiz using 
+ * anonymized group-chat messages. Each question presents a real 
+ * message (>80 chars, chosen for chaotic or suggestive out-of-context 
+ * energy), and the user must guess which friend said it.
+ *
+ * Features:
+ * - Creates a new Google Form in quiz mode
+ * - Imports question data from a JSON structure
+ * - Adds multiple-choice answers with a correct option
+ * - Assigns 1 point per question
+ * - Supports any number of questions
+ *
+ * Data Pipeline:
+ * 1. Export conversations from Facebook (JSON format)
+ * 2. Run a Python script to anonymize all names
+ * 3. Use ChatGPT to extract the most unhinged, >80-character messages
+ * 4. Generate a JSON block with:
+ *      { question: "...", options: [...], correct: "..." }
+ * 5. Paste JSON into this script and execute to build the Google Form
+ */
 
 function createQuizForm() {
   // === 1. YOUR JSON GOES HERE ===
